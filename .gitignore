@@ -1,0 +1,8 @@
+.ipynb_checkpoints/
+*.pyc
+__pycache__/
+*.pkl
+*.pyd   
+.aws-sam
+CLIP-ViT-B-32/model.tar.gz
+CLIP-ViT-L-14/model.tar.gz
