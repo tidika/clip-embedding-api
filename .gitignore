@@ -6,3 +6,5 @@ __pycache__/
 .aws-sam
 CLIP-ViT-B-32/model.tar.gz
 CLIP-ViT-L-14/model.tar.gz
+aws_login.png
+
