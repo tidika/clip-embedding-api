@@ -5,7 +5,7 @@ API service for generating text and image embeddings using CLIP B/32 and L/14 mo
 ![Clip Embedding Inference System](system_architecture.jpeg)
 
 
-## 🚀 Features
+### 🚀 Features
 - **Two API Endpoints**  
   Separate API Gateway endpoints are deployed—one for the CLIP ViT-B/32 model and another for the ViT-L/14 model—allowing flexible embedding generation.
 
@@ -21,7 +21,8 @@ API service for generating text and image embeddings using CLIP B/32 and L/14 mo
 - **Monitoring**  
   CloudWatch Alarms and SNS topics are set up for monitoring model health and performance.
 
-  ## 📁 Repository Structure
+
+### 📁 Repository Structure
 
 - **CLIP-ViT-B-32/**  
   Contains deployment scripts and configurations for the ViT-B/32 model.
