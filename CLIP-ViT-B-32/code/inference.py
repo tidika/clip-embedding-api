@@ -4,6 +4,7 @@ import base64
 import io
 from PIL import Image
 import torch
+import numpy as np
 from sentence_transformers import SentenceTransformer
 
 def model_fn(model_dir, context=None):
@@ -49,5 +50,10 @@ def predict_fn(input_data, model, context=None):
 def output_fn(prediction, content_type):
     """Serialize the prediction output to the desired content type."""
     if content_type == 'application/json':
-        return json.dumps(prediction)
+        embedding_array = np.array(prediction)
+        norm = np.linalg.norm(embedding_array)
+        if norm == 0:
+            raise ValueError("Embedding norm is zero; cannot normalize.")
+        normalized = embedding_array / norm
+        return json.dumps(normalized.tolist())
     raise ValueError(f"Unsupported content type: {content_type}")
