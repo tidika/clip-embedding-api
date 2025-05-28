@@ -6,20 +6,15 @@ API service for generating text and image embeddings using CLIP B/32 and L/14 mo
 
 
 ### 🚀 Features
-- **Two API Endpoints**  
-  Separate API Gateway endpoints are deployed—one for the CLIP ViT-B/32 model and another for the ViT-L/14 model—allowing flexible embedding generation.
+- **Two API Endpoints**: Separate API Gateway endpoints are deployed—one for the CLIP ViT-B/32 model and another for the ViT-L/14 model—allowing flexible embedding generation.
 
-- **Image & Text Embedding**  
-  Supports both image and text inputs to produce corresponding embeddings.
+- **Image & Text Embedding**: Supports both image and text inputs to produce corresponding embeddings.
 
-- **AWS SageMaker Deployment**  
-  Models are deployed on AWS SageMaker serverless endpoints for scalable inference.
+- **AWS SageMaker Deployment**: Models are deployed on AWS SageMaker serverless endpoints for scalable inference.
 
-- **Lambda Integration**  
-  AWS Lambda functions handle API requests and interface with the appropriate SageMaker endpoints.
+- **Lambda Integration**: AWS Lambda functions handle API requests and interface with the appropriate SageMaker endpoints.
 
-- **Monitoring**  
-  CloudWatch Alarms and SNS topics are set up for monitoring model health and performance.
+- **Monitoring**: CloudWatch Alarms and SNS topics are set up for monitoring model health and performance.
 
 
 ### 📁 Repository Structure
@@ -41,4 +36,27 @@ API service for generating text and image embeddings using CLIP B/32 and L/14 mo
 
 - **clip-ViT-L-14_deploy_job.ipynb**  
   Jupyter notebook for deploying the ViT-L/14 model to SageMaker.
+
+
+### 🛠️ Deployment Overview
+
+#### 📦 Model Deployment
+Use the provided Jupyter notebooks to deploy the CLIP models to AWS SageMaker endpoints:
+
+- `clip-ViT-B-32_deploy_job.ipynb`
+- `clip-ViT-L-14_deploy_job.ipynb`
+
+#### 🧩 Lambda Setup
+Deploy the Lambda functions to handle API requests:
+
+- `lambda_code_b32model.py` — for the ViT-B/32 model
+- `lambda_code_l14model.py` — for the ViT-L/14 model
+
+#### 🌐 API Gateway Configuration
+Configure Amazon API Gateway to route requests to the appropriate Lambda functions.  
+Each model has its own dedicated API Gateway endpoint.
+
+#### 📊 Monitoring
+Set up CloudWatch Alarms and SNS topics to monitor the health and performance of the models.  
+Ensure notification subscriptions are confirmed to receive alerts.
 
