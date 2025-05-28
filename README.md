@@ -72,11 +72,7 @@ Send `POST` requests to the API Gateway endpoints with either text or image data
   "text": "Your input text here"
 }
 
-####  Image Input
-
 Send a `POST` request with a base64-encoded image:
-
-```json
 {
   "image": "Base64-encoded image string"
 }
