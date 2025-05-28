@@ -60,3 +60,14 @@ Each model has its own dedicated API Gateway endpoint.
 Set up CloudWatch Alarms and SNS topics to monitor the health and performance of the models.  
 Ensure notification subscriptions are confirmed to receive alerts.
 
+### 📦 Usage
+
+Send `POST` requests to the API Gateway endpoints with either text or image data.
+
+#### 🔸 Request Format
+
+#### Text Input
+```json
+{
+  "text": "Your input text here"
+}
