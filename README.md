@@ -71,11 +71,14 @@ Send `POST` requests to the API Gateway endpoints with either text or image data
 {
   "text": "Your input text here"
 }
+```
 
-Send a `POST` request with a base64-encoded image:
+#### Image Input
+```json
 {
   "image": "Base64-encoded image string"
 }
+```
 
 🔹 Response
 The API returns a JSON array containing the normalized embedding vector:
