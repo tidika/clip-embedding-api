@@ -80,12 +80,14 @@ Send `POST` requests to the API Gateway endpoints with either text or image data
 }
 ```
 
-🔹 Response
+#### 🔹Request Response
+
 The API returns a JSON array containing the normalized embedding vector:
 
-json
+```json
 [
   0.057369355573432444,
   0.03234559691991972,
   ...
 ]
+```
