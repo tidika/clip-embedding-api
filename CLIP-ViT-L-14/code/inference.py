@@ -57,3 +57,4 @@ def output_fn(prediction, content_type):
     if content_type == "application/json":
         return json.dumps(prediction)
     raise ValueError(f"Unsupported content type: {content_type}")
+    

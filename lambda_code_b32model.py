@@ -1,6 +1,7 @@
 import json
 import boto3
 import base64
+import ast
 
 runtime = boto3.client("sagemaker-runtime", region_name="us-east-1")
 
@@ -20,8 +21,10 @@ def lambda_handler(event, context):
         # Build payload depending on input type
         if "text" in event:
             payload = {"inputs": {"text": event["text"]}}
+
         elif "image" in event:
             payload = {"inputs": {"image": event["image"]}}
+
         else:
             return {
                 "statusCode": 400,
@@ -31,22 +34,18 @@ def lambda_handler(event, context):
 
         # Call the SageMaker endpoint
         response = runtime.invoke_endpoint(
-            EndpointName="normalized-b32-model-new",
+            EndpointName="normalized-b32-model",
             ContentType="application/json",
             Body=json.dumps(payload),
         )
 
         # Read and return the response from SageMaker
-        result = json.loads(response["Body"].read().decode())
+        raw_response = response["Body"].read().decode()
 
-        return {
-            "statusCode": 200,
-            "body": json.dumps(result),
-            "headers": {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-            },
-        }
+        # Parse the raw_response as JSON so that the Lambda returns an actual JSON object
+        parsed_response = json.loads(raw_response)
+
+        return parsed_response
 
     except Exception as e:
         return {

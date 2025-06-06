@@ -32,7 +32,7 @@ def lambda_handler(event, context):
 
         # Call the SageMaker endpoint
         response = runtime.invoke_endpoint(
-            EndpointName="l14-clip-model-v1",
+            EndpointName="normalized-l14-model",
             ContentType="application/json",
             Body=json.dumps(payload),
         )
@@ -44,18 +44,18 @@ def lambda_handler(event, context):
             result = np.array(result)
             norm = np.linalg.norm(result)
         if norm > 0:
-            result = (result / norm).tolist() #performs normalization on the returned embedding
+            result = (result / norm).tolist()
         else:
             result = result.tolist()
 
-        return {
-            "statusCode": 200,
-            "body": json.dumps(result),
-            "headers": {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-            },
+        final_response = {
+            "object": "list",
+            "data": [{"object": "embedding", "index": 0, "embedding": result}],
+            "model": "sentence-transformers/clip-ViT-L-14",
+            "usage": {"prompt_tokens": 0, "total_tokens": 0},
         }
+
+        return final_response
 
     except Exception as e:
         return {

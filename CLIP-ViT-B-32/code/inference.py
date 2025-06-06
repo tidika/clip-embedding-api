@@ -55,5 +55,21 @@ def output_fn(prediction, content_type):
         if norm == 0:
             raise ValueError("Embedding norm is zero; cannot normalize.")
         normalized = embedding_array / norm
-        return json.dumps(normalized.tolist())
+
+        final_response = {
+            "object": "list",
+            "data": [
+                {
+                    "object": "embedding",
+                    "index": 0,
+                    "embedding": normalized.tolist()
+                }
+            ],
+            "model": "sentence-transformers/clip-ViT-B-32",
+            "usage": {
+                "prompt_tokens": 0, 
+                "total_tokens": 0
+            }             
+        }
+        return json.dumps(final_response)
     raise ValueError(f"Unsupported content type: {content_type}")
